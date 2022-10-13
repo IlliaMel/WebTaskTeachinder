@@ -10,27 +10,28 @@
       <form calss="teacher-add-form" accept-charset="utf-8">
          <fieldset>
          <legend>Форма для додавання викладача</legend>
-         <p>Повне ім’я</p>
-         <input type=text maxlength = 100 autofocus>
-         <p>Стать</p>
-         <input type=radio name=sex value=male> Чоловіча
-         <p><input type=radio name=sex value=female> Жіноча<p>
-         <p>Дата народження,</p>
-         <input type=date>    
-         <p>Email</p>
-         <input type=email>
-         <p>Телефон</p>
-         <input type=tel>
-         <p>Бажаний колір фону</p>
-         <input type=color>
-         <p>Країна</p>
-         <input type=text maxlength = 100>
-         <p>Місто</p>
-         <input type=text maxlength = 100>
-         <p>Коментар:</p>
+         <label>Повне ім’я</label>
+         <input id="teacher-name-id" name="teacher-name" type="text" maxlength = 100 autofocus>
+         <label>Стать</label>
+         <input id="man-id" name="man-name" type="radio" name=sex value=male>
+            <label>Чоловіча</label>
+         <input id="woman-id" name="woman-name" type="radio" name=sex value=female>
+            <label>Жіноча</label>
+         <label>Дата народження,</label>
+         <input id="b-date-id" name="b-date-name" type="date">
+         <label>Email</label>
+         <input id="email-id" name="email-name" type="email">
+         <label>Телефон</label>
+         <input id="phone-id" name="phone-name" type="tel">
+         <label>Бажаний колір фону</label>
+         <input id="bgcolor-id" name="bgcolor-name" type="color">
+         <label>Країна</label>
+         <input id="country-id" name="country-name" type="text" maxlength = 100>
+         <label>Місто</label>
+         <input id="city-id" name="city-name" type="text" maxlength = 100>
+         <label>Коментар:</label>
          <textarea name=textarea rows=4 cols=50> </textarea>
-         <p></p>
-         <input type=submit value="Надіслати запит">
+         <input id="submit-appeal-id" name="submit-appeal-name" type="submit" value="Надіслати запит">
          </fieldset>
       </form>
    </body>
