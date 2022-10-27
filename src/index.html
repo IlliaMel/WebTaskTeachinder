@@ -1,22 +1,529 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
+<head itemscope itemtype="http://schema.org/WebSite">
+   <meta charset="utf-8">
+   <meta content="ie=edge" http-equiv="x-ua-compatible">
+   <meta content="no" name="msapplication-tap-highlight">
+   <meta content="width=device-width, initial-scale=1" name="viewport">
+   <title>Teachinder</title>
+   <link href="./css/app.css" rel="stylesheet">
+</head>
+<body>
+<div id="content">
+   <!-- Header -->
+   <header id="header">
+      <div id="header-main">
+         <div id="header-main-logo">
+            <span id="logo">Teachinder</span>
+         </div>
+         <div id="teacher-search-filed">
+            <form>
+               <input name="search" placeholder="Name, note or age to search"
+                      required type="text">
+               <button id="find-teacher" type="submit">Search</button>
+            </form>
+         </div>
+      </div>
+      <div class="header-links">
+         <nav class="navigation-list">
+            <ul>
+               <li><a href="#top-teacher-content">Teachers</a></li>
+               <li><a href="#statistics">Statistics</a></li>
+               <li><a href="#favorites">Favorites</a></li>
+               <li><a href="#about">About</a></li>
+            </ul>
+         </nav>
+         <button id="add-teacher-id" class="add-teacher">Add Teacher</button>
+      </div>
+   </header>
+   <!-- Body -->
+   <main id="main-site-body">
+      <!-- Top Teachers -->
+      <section>
+         <div class="divider"></div>
+         <h1 class="title">Top Teachers</h1>
+         <div id="top-teacher-content">
+            <div id="filter">
+               <div id="top-teacher-content-age">
+                  <label for="age">Age:</label>
+                  <input type="number" id="age" min="18" max="60" value="18">
+               </div>
+               <div>
+                  <label for="region">Region:</label>
+                  <select name="regions" id="region">
+                     <option value="usa">USA</option>
+                     <option value="europe">Europe</option>
+                     <option value="asia">Asia</option>
+                     <option value="africa">Africa</option>
+                  </select>
+               </div>
+               <div>
+                  <label for="sex">Sex:</label>
+                  <select name="sex-name" id="sex">
+                     <option value="male">Male</option>
+                     <option value="female">Female</option>
+                  </select>
+               </div>
+               <div>
+                  <input id="only-photo" type="checkbox" name="only-photo-name">
+                  <label for="only-photo">Only with photo</label>
+               </div>
+               <div>
+                  <input id="only-favorites" type="checkbox" name="only-favorites-name">
+                  <label for="only-favorites">Only favorites</label>
+               </div>
+            </div>
+            <!-- Grid -->
+            <div id="filter-result">
+               <ul class="teacher-list-ul">
+                  <li class="info-teacher">
+                     <div class="frame">
+                        <div>
+                           <img src="./images/teacher.jpg" alt="Teacher icon">
+                        </div>
+                     </div>
+                     <div>Ihor<br>Tkachuck</div>
+                     <div>Chemistry</div>
+                     <div>Ukraine</div>
+                  </li>
+                  <li class="info-teacher">
+                     <div class="frame">
+                        <div>
+                           <img src="./images/teacher.jpg" alt="Teacher icon">
+                        </div>
+                     </div>
+                     <div>Ihor<br>Tkachuck</div>
+                     <div>Chemistry</div>
+                     <div>Ukraine</div>
+                  </li>
+                  <li class="fav info-teacher">
+                     <div class="frame">
+                        <div>
+                           <img src="./images/teacher.jpg" alt="Teacher icon">
+                        </div>
+                     </div>
+                     <div>Ihor<br>Tkachuck</div>
+                     <div>Chemistry</div>
+                     <div>Ukraine</div>
+                  </li>
+                  <li class="info-teacher">
+                     <div class="frame">
+                        <div>
+                           <span>I.T</span>
+                        </div>
+                     </div>
+                     <div>Ihor<br>Tkachuck</div>
+                     <div>Chemistry</div>
+                     <div>Ukraine</div>
+                  </li>
+                  <li class="info-teacher">
+                     <div class="frame">
+                        <div>
+                           <img src="./images/teacher.jpg" alt="Teacher icon">
+                        </div>
+                     </div>
+                     <div>Ihor<br>Tkachuck</div>
+                     <div>Chemistry</div>
+                     <div>Ukraine</div>
+                  </li>
+                  <li class="info-teacher">
+                     <div class="frame">
+                        <div>
+                           <img src="./images/teacher.jpg" alt="Teacher icon">
+                        </div>
+                     </div>
+                     <div>Ihor<br>Tkachuck</div>
+                     <div>Chemistry</div>
+                     <div>Ukraine</div>
+                  </li>
+                  <li class="info-teacher">
+                     <div class="frame">
+                        <div>
+                           <img src="./images/teacher.jpg" alt="Teacher icon">
+                        </div>
+                     </div>
+                     <div>Ihor<br>Tkachuck</div>
+                     <div>Chemistry</div>
+                     <div>Ukraine</div>
+                  </li>
+                  <li class="info-teacher">
+                     <div class="frame">
+                        <div>
+                           <img src="./images/teacher.jpg" alt="Teacher icon">
+                        </div>
+                     </div>
+                     <div>Ihor<br>Tkachuck</div>
+                     <div>Chemistry</div>
+                     <div>Ukraine</div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </section>
+      <!-- Statistics -->
+      <section id="statistics">
+         <div class="divider"></div>
+         <h1 class="title">Statistics</h1>
+         <div>
+            <table>
+               <thead>
+               <tr>
+                  <th>Name</th>
+                  <th>Speciality</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Nationality</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                  <td>Daisy Alexander</td>
+                  <td>Chemistry</td>
+                  <td>28</td>
+                  <td>Female</td>
+                  <td>Vietnam</td>
+               </tr>
+               <tr>
+                  <td>Julia Bradley</td>
+                  <td>Math</td>
+                  <td>26</td>
+                  <td>Female</td>
+                  <td>USA</td>
+               </tr>
+               <tr>
+                  <td>Rita Hart</td>
+                  <td>Art</td>
+                  <td>41</td>
+                  <td>Female</td>
+                  <td>Ireland</td>
+               </tr>
+               <tr>
+                  <td>Jonathan Jacobs</td>
+                  <td>Math</td>
+                  <td>32</td>
+                  <td>Male</td>
+                  <td>England</td>
+               </tr>
+               <tr>
+                  <td>Nathaniel White</td>
+                  <td>English</td>
+                  <td>37</td>
+                  <td>Male</td>
+                  <td>Austria</td>
+               </tr>
+               <tr>
+                  <td>Frank Medina</td>
+                  <td>Math</td>
+                  <td>43</td>
+                  <td>Male</td>
+                  <td>Italy</td>
+               </tr>
+               <tr>
+                  <td>Ella Curtis</td>
+                  <td>Art</td>
+                  <td>34</td>
+                  <td>Female</td>
+                  <td>USA</td>
+               </tr>
+               <tr>
+                  <td>Claire Simmons</td>
+                  <td>Chemistry</td>
+                  <td>38</td>
+                  <td>Female</td>
+                  <td>Netherlands</td>
+               </tr>
+               <tr>
+                  <td>Benjamin Knight</td>
+                  <td>Biology</td>
+                  <td>44</td>
+                  <td>Male</td>
+                  <td>Scotland</td>
+               </tr>
+               <tr>
+                  <td>Norman Rose</td>
+                  <td>Art</td>
+                  <td>36</td>
+                  <td>Female</td>
+                  <td>France</td>
+               </tr>
+               </tbody>
+               <tfoot>
+               <tr>
+                  <td colspan="4" rowspan="2">
+                     <a href="#">1</a>
+                     <a href="#">2</a>
+                     <a href="#">3</a>
+                     <span>...</span>
+                     <a href="#">Last</a>
+                  </td>
+               </tr>
+               </tfoot>
+            </table>
+         </div>
+      </section>
+      <!-- Favorites -->
+      <section id="favorites">
+         <div class="divider"></div>
+         <h1 class="title">Favorites</h1>
+         <div id="favorites-content">
+            <div id="left-button"></div>
+            <ul  class="teacher-list-ul">
+               <li class="fav">
+                  <div class="frame">
+                     <div>
+                        <img src="./images/teacher.jpg" alt="Teacher icon">
+                     </div>
+                  </div>
+                  <div>Ihor<br>Tkachuck</div>
+                  <div>Chemistry</div>
+                  <div>Ukraine</div>
+               </li>
+               <li  class="fav">
+                  <div class="frame">
+                     <div>
+                        <img src="./images/teacher.jpg" alt="Teacher icon">
+                     </div>
+                  </div>
+                  <div>Ihor<br>Tkachuck</div>
+                  <div>Chemistry</div>
+                  <div>Ukraine</div>
+               </li>
+               <li  class="fav">
+                  <div class="frame">
+                     <div>
+                        <img src="./images/teacher.jpg" alt="Teacher icon">
+                     </div>
+                  </div>
+                  <div>Ihor<br>Tkachuck</div>
+                  <div>Chemistry</div>
+                  <div>Ukraine</div>
+               </li>
+               <li  class="fav">
+                  <div class="frame">
+                     <div>
+                        <img src="./images/teacher.jpg" alt="Teacher icon">
+                     </div>
+                  </div>
+                  <div>Ihor<br>Tkachuck</div>
+                  <div>Chemistry</div>
+                  <div>Ukraine</div>
+               </li>
+            </ul>
+            <div id="right-button"></div>
+         </div>
+      </section>
+      <!-- About -->
+      <section id="about">
+         <div class="divider"></div>
+         <div id="about-text">
+            <p>
+               Lorem ipsum dolor sit amet, consecrator adipisicing alit. A atque facere, hic
+               impedit itaque molestiae sit tempore? Ea in mollitia natus rerum voluptates. Ea ex excepturi facere tempora. Aliquid
+               asperiores hic impedit iusto natus quaerat sit? Culpa iusto optio voluptas voluptate.<br>
+               Emin eveniet fugit iure maiores molestiae, praesentium quia
+            </p>
+            <p>
+               Lorem ipsum dolor sit amet, consecrator adipisicing alit. Aliquam eligendi illum in
+               inverntore ipsum odio officiis omins quisquam sed tempora?
+            </p>
+            <p>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit
+               Veritatis, voluptatibus iure dignissimos cupiditate delectus laudantium
+               reiciendis commodi culpa accusantium maiores veniam atque sapiente quaerat deleniti recusandae itaque tenetur perspiciatis ratione
+            </p>
+         </div>
+      </section>
+   </main>
+   <!-- Footer -->
+   <footer id="footer">
+      <div class="header-links">
+         <nav class="navigation-list">
+            <ul>
+               <li><a href="#top-teacher-content">Teachers</a></li>
+               <li><a href="#statistics">Statistics</a></li>
+               <li><a href="#favorites">Favorites</a></li>
+               <li><a href="#about">About</a></li>
+            </ul>
+         </nav>
+         <button class="add-teacher">Add Teacher</button>
+      </div>
+   </footer>
+</div>
 
-   <head itemscope itemtype="http://schema.org/WebSite">
+<dialog id="teacher-adder">
+   <header>
+      <div>
+         <h3>Add Teacher</h3>
+         <button id="teacher-adder-close"></button>
+      </div>
+   </header>
+   <main id="teacher-full-adder-info">
+      <form id="teacher-add-form" accept-charset="utf-8">
+         <div id="name-container">
+            <label for="teacher-adder-name">Name</label>
+            <input id="teacher-adder-name" name="teacher-name" type="text" value=" Enter Name" maxlength = 100 autofocus>
+         </div>
 
-      <meta charset="utf-8">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <meta name="msapplication-tap-highlight" content="no">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+         <div id="speciality-container">
+            <label for="speciality">Speciality</label>
+            <select name="speciality-name" id="speciality">
+               <option value="chemistry">Chemistry</option>
+               <option value="math">Math</option>
+               <option value="chess">Chess</option>
+               <option value="physics">Physics</option>
+               <option value="medicine">Medicine</option>
+            </select>
+         </div>
 
-      <title>Project</title>
 
-      <link rel="stylesheet" href="./css/app.css">
+         <div id="teacher-add-location">
+            <div id="country-container">
+               <label for="country">Country</label>
+               <select name="country-name" id="country">
+                  <option value="ukraine">Ukraine</option>
+                  <option value="poland">Poland</option>
+                  <option value="china">China</option>
+                  <option value="india">India</option>
+                  <option value="uk">UK</option>
+               </select>
+            </div>
 
-   </head>
+            <div id="city-container">
+               <label for="teacher-adder-city">City</label>
+               <input id="teacher-adder-city" name="teacher-city" type="text" maxlength = 100 autofocus>
+            </div>
+         </div>
 
-   <body itemscope itemtype="http://schema.org/WebPage">
+         <div id="teacher-add-contacts">
+            <div id="email-container">
+               <label for="email-id">Email</label>
+               <input id="email-id" name="email-name" type="email">
+            </div>
 
-      <script type="text/javascript" src="../build/app.js"></script>
-      
-  </body>
+            <div id="phone-container">
+               <label for="phone-id">Phone</label>
+               <input id="phone-id" name="phone-name" type="tel">
+            </div>
+         </div>
+
+         <div id="b-date-container">
+            <label for="b-date-id">Date of birth</label>
+            <input id="b-date-id" name="b-date-name" type="date">
+         </div>
+
+         <div id="sex-container">
+            <label>Sex</label>
+            <input id="man-id" type="radio" name=sex value=male>
+            <label for="man-id">Male</label>
+            <input id="woman-id"  type="radio" name=sex value=female>
+            <label for="woman-id">Female</label>
+         </div>
+
+         <div id="bgcolor-container">
+            <label for="bgcolor-id">Background color</label>
+            <input id="bgcolor-id" name="bgcolor-name" type="color">
+         </div>
+
+         <div id="comment-container">
+            <label for="textarea-id">Notes (optional)</label>
+            <textarea id="textarea-id" name=textarea rows=4 cols=50> </textarea>
+         </div>
+
+         <button id="submit-appeal-id" name="submit-appeal-name" type="submit">Add</button>
+      </form>
+   </main>
+</dialog>
+
+<dialog id="info-card-teacher">
+   <header>
+      <div>
+         <h3>Teacher Info Card</h3>
+         <button id="info-card-teacher-close"></button>
+      </div>
+   </header>
+   <main id="teacher-full-card-info">
+      <section  id="upper-info" data-bgcolor = "color">
+         <picture>
+            <img src="images/teacher.jpg"
+                 alt="Фото Вчителя">
+         </picture>
+
+         <div id="text-teacher-data">
+            <div id="teacher-name">
+               <span>Ihor Tkachuck</span>
+            </div>
+
+            <div id="speciality-teacher-data">
+               <span>Chemistry</span>
+            </div>
+
+            <div id="location">
+               <span>Kiev,</span>
+               <span>Ukraine</span>
+            </div>
+
+            <div id="age-sex-data">
+               <span>35,</span>
+               <span>Male</span>
+            </div>
+
+            <div id="contacts">
+               <a href="#" id="email">ihor_tkachuck@gmail.com</a>
+               <span id="phone">+380964993252</span>
+            </div>
+         </div>
+      </section>
+      <section id="article-map-info">
+         <article>
+            <div>
+               <p>
+                  Subscribe To The Energize Schools Newsletter For Updates, Resources, And Opportunities. For high school teachers interested in incorporating environmental
+                  literacy activities.
+                  Receive financial support. Receive training. Courses: Adaptable lesson plans, explore sustainability.
+               </p>
+            </div>
+         </article>
+         <a href="#" id="map">toggle map</a>
+         <!-- <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13446.687691744002!2d166.6428130617894!3d-77.84010056834471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaf773973ada5b34d%3A0xe241f2716549c551!2z0JzQsNC6LdCc0LXRgNC00L4sINCQ0L3RgtCw0YDQutGC0LjQutCw!5e0!3m2!1suk!2sua!4v1665591977061!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+      </section>
+   </main>
+</dialog>
+<!-- src="app.js" type="text/javascript" !-->
+<script>
+
+
+   (() => {
+      const infoTeacherButtons = document.getElementsByClassName("info-teacher");
+      const addTeacherButton = document.getElementById("add-teacher-id");
+
+      const cancelTeacherAdderButton = document.getElementById("teacher-adder-close");
+      const cancelTeacherInfoButton = document.getElementById("info-card-teacher-close");
+
+
+      const adderDialog = document.getElementById("teacher-adder");
+      const infoDialog = document.getElementById("info-card-teacher");
+
+      for(var i = 0; i < infoTeacherButtons.length; i++) {
+         (function(index) {
+            infoTeacherButtons[index].addEventListener("click", function() {
+               infoDialog.showModal();
+            })
+         })(i);
+      }
+
+      cancelTeacherInfoButton.addEventListener("click", () => {
+         infoDialog.close();
+      });
+
+      addTeacherButton.addEventListener("click", () => {
+         adderDialog.showModal();
+      });
+
+      cancelTeacherAdderButton.addEventListener("click", () => {
+         adderDialog.close();
+      });
+   })();
+
+</script>
+</body>
 </html>
