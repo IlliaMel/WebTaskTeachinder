@@ -475,13 +475,11 @@
       </section>
       <section id="article-map-info">
          <article>
-            <div>
                <p>
                   Subscribe To The Energize Schools Newsletter For Updates, Resources, And Opportunities. For high school teachers interested in incorporating environmental
                   literacy activities.
                   Receive financial support. Receive training. Courses: Adaptable lesson plans, explore sustainability.
                </p>
-            </div>
          </article>
          <a href="#" id="map">toggle map</a>
          <!-- <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13446.687691744002!2d166.6428130617894!3d-77.84010056834471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaf773973ada5b34d%3A0xe241f2716549c551!2z0JzQsNC6LdCc0LXRgNC00L4sINCQ0L3RgtCw0YDQutGC0LjQutCw!5e0!3m2!1suk!2sua!4v1665591977061!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
@@ -504,11 +502,9 @@
       const infoDialog = document.getElementById("info-card-teacher");
 
       for(var i = 0; i < infoTeacherButtons.length; i++) {
-         (function(index) {
-            infoTeacherButtons[index].addEventListener("click", function() {
+         infoTeacherButtons[i].addEventListener("click", function() {
                infoDialog.showModal();
-            })
-         })(i);
+            });
       }
 
       cancelTeacherInfoButton.addEventListener("click", () => {
