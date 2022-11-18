@@ -67,7 +67,7 @@ body {
   width: 100%;
 }
 
-#teacher-search-filed form {
+#teacher-search-filed div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -76,7 +76,7 @@ body {
   height: 40px;
 }
 
-#teacher-search-filed form input {
+#teacher-search-filed div input {
   width: 200px;
   height: 35px;
   font-size: 14px;
@@ -441,6 +441,10 @@ td {
   width: 80%;
 }
 
+#favorites-content .teacher-list-ul::-webkit-scrollbar {
+  display: none;
+}
+
 .control-button {
   width: 80px;
   height: 80px;
@@ -539,6 +543,61 @@ footer {
   height: 18px;
 }
 
+#search-result {
+  position: fixed;
+  overflow-y: hidden;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 0;
+  width: 500px;
+  height: 575px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#search-result-block {
+  overflow-y: auto;
+  height: 520px;
+}
+
+#search-result header div {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  background: #313131;
+  padding-right: 30px;
+  padding-left: 15px;
+}
+
+#search-result header h3 {
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+}
+
+#search-result header button {
+  background: url("../images/close-icn.svg") no-repeat;
+  cursor: pointer;
+  border: none;
+  width: 18px;
+  height: 18px;
+}
+
+#search-result header button:hover {
+  background: url("../images/close-icn-hover.svg") no-repeat;
+  cursor: pointer;
+  border: none;
+  width: 18px;
+  height: 18px;
+}
+
 #teacher-full-card-info #upper-info {
   display: flex;
   flex-direction: row;
@@ -560,15 +619,15 @@ footer {
   padding: 5px 5px 5px 30px;
 }
 
-#text-teacher-data::after {
+#favorites-div-button {
   z-index: 1;
   content: "";
   position: absolute;
-  right: 30px;
-  top: 100px;
-  width: 24px;
-  height: 24px;
-  background-image: url("../images/fav.svg");
+  right: 20px;
+  top: 70px;
+  width: 48px;
+  height: 48px;
+  background-image: url("../images/makeFav.svg");
 }
 
 #text-teacher-data #teacher-name {
@@ -712,6 +771,7 @@ footer {
 #teacher-adder #speciality-container select {
   font-size: 16px;
   height: 46px;
+  width: 100%;
 }
 
 #teacher-adder #teacher-add-location {
@@ -858,7 +918,7 @@ footer {
     width: 100%;
   }
 
-  #teacher-search-filed form {
+  #teacher-search-filed div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -867,7 +927,7 @@ footer {
     height: 40px;
   }
 
-  #teacher-search-filed form input {
+  #teacher-search-filed div input {
     width: 120px;
     height: 33px;
     font-size: 12px;
@@ -1097,7 +1157,7 @@ footer {
     top: 70px;
     width: 32px;
     height: 32px;
-    background-image: url("../images/fav.svg");
+    background-image: url("../images/makeFav.svg");
   }
 
   #text-teacher-data #teacher-name {
@@ -1150,7 +1210,7 @@ footer {
   #teacher-adder #speciality-container select {
     font-size: 16px;
     height: 30px;
-    width: 101.5%;
+    width: 100%;
   }
 
   #teacher-adder #name-container input {
