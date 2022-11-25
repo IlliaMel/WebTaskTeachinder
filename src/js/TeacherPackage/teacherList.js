@@ -2,6 +2,7 @@
 
 export class TeacherList {
 
+
     static sortByAge = 1;
     static sortByCourse = 1;
     static sortByName = 1;
@@ -11,7 +12,12 @@ export class TeacherList {
     static clickedTeacherId;
 
     static favIndex = 0;
+    static paginationIndex = 0;
 
+    static paginationData = [];
+    static filterData = [];
+
+    static allData = [];
 
     static makeTeacherLi(teacher) {
         const li = document.createElement('li');
@@ -42,7 +48,6 @@ export class TeacherList {
             ul.appendChild(TeacherList.makeTeacherLi(teacher));
         }
         TeacherList.openInfoLogic(teachers);
-
     }
 
     static loadFavTeachers(teachers){
@@ -51,7 +56,8 @@ export class TeacherList {
         const favTeacher = TeacherList.onlyFavTeachers(teachers);
         const quantity = 5 > favTeacher.length ? favTeacher.length : 5;
         for (let i = TeacherList.favIndex; i < (quantity + TeacherList.favIndex); i++){
-            ul.appendChild(TeacherList.makeTeacherLi(favTeacher[i]));
+            if(i < favTeacher.length)
+                ul.appendChild(TeacherList.makeTeacherLi(favTeacher[i]));
         }
         TeacherList.openInfoLogic(teachers);
     }
@@ -96,6 +102,8 @@ export class TeacherList {
     }
 
 
+
+
     static addForTableInfo(data){
         const div = document.getElementsByClassName("table-scroll-container");
         const tbody = div[0].getElementsByTagName('tbody');
@@ -133,13 +141,13 @@ export class TeacherList {
         const infoDialog = document.getElementById("info-card-teacher");
         for (const button of infoTeacherButtons) {
             button.addEventListener("click", () => {
-                if(TeacherList.setInfoDialog(button,data))
-                    infoDialog.removeAttribute('open')
+                infoDialog.removeAttribute('open')
+                TeacherList.setInfoDialog(button,data)
                 infoDialog.showModal();
             });
         }
 
-        cancelTeacherInfoButton.addEventListener("click", () => {
+            cancelTeacherInfoButton.addEventListener("click", () => {
             infoDialog.close();
         });
     }

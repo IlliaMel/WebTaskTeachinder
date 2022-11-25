@@ -1,6 +1,6 @@
 
 // Завдання 1. Данні з обєкту random-user-mock привести до вигляду:
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 import { additionalUsers, randomUserMock } from '../FE4U-Lab3-mock.js';
 import {mock_data} from "../../data/mock_data.js";
 
@@ -150,6 +150,7 @@ export class Utils {
   static valueOfFoundUsers(users, filterValues) {
     return Math.round(10000 * ((filterUsers(users, filterValues)).length / users.length)) / 100;
   }
+
 
 }
 

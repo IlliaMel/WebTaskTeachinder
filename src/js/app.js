@@ -1,7 +1,7 @@
 import {mock_data} from "../data/mock_data.js";
 import {TeacherList} from "./TeacherPackage/teacherList.js";
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
-
+import { Utils } from  "./Utils/utils.js";
 
 function addTeacherInfoLogic(){
     const addTeacherButtons = document.getElementsByClassName("add-teacher");
@@ -45,29 +45,41 @@ function filterLogic(data){
     const onlyPhoto = document.getElementById("only-photo");
     const onlyFavorites = document.getElementById("only-favorites");
 
-    age.onchange = () => {  AllFiltersTogether(data,age, region , gender, onlyPhoto, onlyFavorites);};
+    age.onchange = () => {  AllFiltersTogether(data);};
 
-    region.onchange = () => { AllFiltersTogether(data,age, region , gender, onlyPhoto, onlyFavorites);};
+    region.onchange = () => { AllFiltersTogether(data);};
 
-    gender.onchange = () => { AllFiltersTogether(data,age, region , gender, onlyPhoto, onlyFavorites);};
+    gender.onchange = () => { AllFiltersTogether(data);};
 
     onlyPhoto.addEventListener('change', (event) => {
-        AllFiltersTogether(data,age, region , gender, onlyPhoto, onlyFavorites);
+        AllFiltersTogether(data);
     })
 
     onlyFavorites.addEventListener('change', (event) => {
-        AllFiltersTogether(data,age, region , gender, onlyPhoto, onlyFavorites);
+        AllFiltersTogether(data);
     })
 
 }
 
-function AllFiltersTogether(data,age, region , gender,onlyPhoto,onlyFavorites){
-    TeacherList.addAllTeacher( data.filter((user) =>
+function AllFiltersTogether(data){
+    const age = document.getElementById("age");
+    const region = document.getElementById("region");
+    const gender = document.getElementById("sex");
+    const onlyPhoto = document.getElementById("only-photo");
+    const onlyFavorites = document.getElementById("only-favorites");
+
+    TeacherList.filterData = data.filter((user) =>
         (age.value === 'all' ? true : ageValues(age.value,user.age))
         && (region.value === 'all' ? true : user.country === region.value)
         && (gender.value === 'all' ? true : user.gender === gender.value)
-            && (onlyPhoto.checked ? user.picture_large : true)
-        && (onlyFavorites.checked ?  user.favorite : true)));
+        && (onlyPhoto.checked ? user.picture_large : true)
+        && (onlyFavorites.checked ?  user.favorite : true));
+
+    TeacherList.paginationIndex = 0;
+    paginationListLogic(TeacherList.filterData);
+    onPaginationClick(TeacherList.filterData);
+    TeacherList.addAllTeacher(TeacherList.paginationData);
+    TeacherList.addForTableInfo(TeacherList.paginationData);
 }
 
 function ageValues(value,age){
@@ -83,14 +95,9 @@ function ageValues(value,age){
         return age >= 66 && age < 78;
     else
         return false;
-
 }
 
-
-
-
 function buttonsFavLogic(data){
-
     const rightFavButton = document.getElementById("right-button");
     const leftFavButton = document.getElementById("left-button");
 
@@ -107,7 +114,61 @@ function buttonsFavLogic(data){
     });
 }
 
-function tableButtonsLogic(data){
+function paginationListLogic(data){
+    let arr = data.slice();
+    TeacherList.paginationData = [];
+    let paginationIndexStart = TeacherList.paginationIndex * 10;
+    let paginationIndexEnd = (arr.length > (paginationIndexStart + 10)) ? paginationIndexStart + 10 : arr.length;
+    for (let i = paginationIndexStart; i < paginationIndexEnd; i++){
+        TeacherList.paginationData.push(arr[i]);
+    }
+}
+function paginationButtonsCreat(){
+    const tableTd = document.getElementById("pagination");
+    let html = '';
+    html += '<a id="backPag">---</a>';
+    html += '<div id="pagNumbers"></div>';
+    html += '<a id="forwardPag">---</a>';
+    tableTd.innerHTML = html;
+}
+
+function paginationButtonsLogic(){
+    const backPagButton = document.getElementById("backPag");
+    const forwardPagButton = document.getElementById("forwardPag");
+
+    backPagButton.addEventListener("click", () => {
+        if (TeacherList.paginationIndex > 0)
+            TeacherList.paginationIndex--;
+        paginationListLogic(TeacherList.filterData);
+        onPaginationClick(TeacherList.filterData);
+        TeacherList.addAllTeacher(TeacherList.paginationData);
+        TeacherList.addForTableInfo(TeacherList.paginationData);
+    });
+
+    forwardPagButton.addEventListener("click", () => {
+        if ((TeacherList.filterData.length/10) - 1 > TeacherList.paginationIndex)
+            TeacherList.paginationIndex++;
+        paginationListLogic(TeacherList.filterData);
+        onPaginationClick(TeacherList.filterData);
+        TeacherList.addAllTeacher(TeacherList.paginationData);
+        TeacherList.addForTableInfo(TeacherList.paginationData);
+    });
+
+}
+
+function onPaginationClick(data){
+    const div = document.getElementById("pagNumbers");
+    let html = '';
+    for (let i = 1 ; i < ((data.length/10) + 1); i++){
+        if(i === (TeacherList.paginationIndex + 1))
+            html += '<a id="selectedPag">' + i + '</a>';
+        else
+            html += '<span>' + i + '</span>';
+    }
+    div.innerHTML = html;
+}
+
+function tableButtonsLogic(){
     const sortByName = document.getElementById("name-table-info");
     const sortByCourse = document.getElementById("speciality-table-info");
     const sortByAge = document.getElementById("age-table-info");
@@ -116,27 +177,28 @@ function tableButtonsLogic(data){
 
     sortByName.addEventListener("click", () => {
         TeacherList.sortByName *= -1;
-        TeacherList.addForTableInfo(data.sort(compareByNames));
+        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareByNames));
     });
 
     sortByCourse.addEventListener("click", () => {
         TeacherList.sortByCourse *= -1;
-        TeacherList.addForTableInfo(data.sort(compareBySpecialities));
+
+        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareBySpecialities));
     });
 
     sortByAge.addEventListener("click", () => {
         TeacherList.sortByAge *= -1;
-        TeacherList.addForTableInfo(data.sort(compareByAges));
+        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareByAges));
     });
 
     compareByGender.addEventListener("click", () => {
         TeacherList.sortByGender *= -1;
-        TeacherList.addForTableInfo(data.sort(compareByGenders));
+        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareByGenders));
     });
 
     sortByCountry.addEventListener("click", () => {
         TeacherList.sortByCountry *= -1;
-        TeacherList.addForTableInfo(data.sort(compareByCountries));
+        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareByCountries));
     });
 
     function compareByNames(a, b) {
@@ -194,18 +256,15 @@ function tableButtonsLogic(data){
 function favAddLogic(data){
     const favoritesButton = document.getElementById("favorites-div-button");
     favoritesButton.addEventListener("click", () => {
-        let dataRes;
         for (let teacher of data){
             if(teacher.id === TeacherList.clickedTeacherId){
                 teacher.favorite = !teacher.favorite
                 favoritesButton.style.backgroundImage = teacher.favorite ? 'url("../src/images/fav.svg")' : 'url("../src/images/makeFav.svg")' ;
-                dataRes += teacher;
-            }else {
-                dataRes += teacher;
             }
         }
-        TeacherList.addAllTeacher(mock_data);
-        TeacherList.loadFavTeachers(mock_data);
+        localStorage.setItem("data" , JSON.stringify(data));
+        TeacherList.loadFavTeachers(data);
+        AllFiltersTogether(data);
     });
 }
 
@@ -258,11 +317,12 @@ function addTeacherResLogic(data){
         if(isValidUser(teacher) && isStringFieldValid(bDate) && teacher.age >= 18){
             data.push(teacher);
 
-            TeacherList.addAllTeacher(data);
+            AllFiltersTogether(data);
             TeacherList.loadFavTeachers(data);
-            TeacherList.addForTableInfo(data);
-
             const adderDialog = document.getElementById("teacher-adder");
+
+
+            localStorage.setItem("data" , JSON.stringify(data))
 
             adderDialog.close();
         }else{
@@ -325,11 +385,12 @@ function addTeacherResLogic(data){
 
 }
 
-function main(){
-    TeacherList.addAllTeacher(mock_data);
-    TeacherList.loadFavTeachers(mock_data);
-    TeacherList.addForTableInfo(mock_data);
 
+function allLogic(mock_data){
+    paginationButtonsCreat();
+
+    TeacherList.loadFavTeachers(mock_data);
+    AllFiltersTogether(mock_data);
     addTeacherInfoLogic();
     buttonsFavLogic(mock_data);
     filterLogic(mock_data);
@@ -337,6 +398,37 @@ function main(){
     searchLogic(mock_data);
     favAddLogic(mock_data);
     addTeacherResLogic(mock_data);
+    paginationButtonsLogic();
+
 }
 
-main();
+
+function addStorage() {
+    if ("localStorage" in window) {
+        fetch("https://randomuser.me/api/?results=50")
+            .then((results) => {
+                return results.json();
+            })
+            .then((data) => {
+                let arr = data['results'].map(user => Utils.reformUser(user));
+                    localStorage.setItem("data" , JSON.stringify(arr))
+                TeacherList.allData = JSON.parse(localStorage.getItem("data"));
+                allLogic(TeacherList.allData);
+            });
+
+    } else {
+        alert("no localStorage in window");
+    }
+}
+
+window.onload = function () {
+    if ("localStorage" in window){
+        if(localStorage.length === 0){
+            addStorage();
+        }else{
+            TeacherList.allData = JSON.parse(localStorage.getItem("data"));
+            allLogic(TeacherList.allData);
+        }
+
+    }
+};

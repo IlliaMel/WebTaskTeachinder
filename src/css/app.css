@@ -349,6 +349,8 @@ td {
   padding: 5px 10px;
 }
 
+
+
 #statistics thead tr th {
   position: relative;
   cursor: pointer;
@@ -414,14 +416,21 @@ td {
   background-color: var(--shadow-table-color);
 }
 
+#pagination {
+  display: flex;
+  cursor: pointer;
+  font-size: 20px;
+}
+
 #statistics table tfoot a {
   margin-right: 5px;
   text-decoration: none;
   color: var(--page-number-color);
 }
 
-#statistics table tfoot a:first-child {
-  color: var(--shadow-сolor);
+#statistics table #selectedPag {
+  font-size: 22px;
+  font-weight: 500;
 }
 
 #statistics table tfoot span {
