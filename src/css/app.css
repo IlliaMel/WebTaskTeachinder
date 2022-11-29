@@ -330,6 +330,26 @@ button:hover {
   font-size: 16px;
 }
 
+.pie-chart-container {
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  margin: 20px auto;
+  background-color: rgba(159, 159, 159, 0.11);
+}
+
+.pie-chart-container div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  height: 270px;
+}
+
 #statistics table {
   margin-left: auto;
   margin-right: auto;
@@ -348,8 +368,6 @@ th,
 td {
   padding: 5px 10px;
 }
-
-
 
 #statistics thead tr th {
   position: relative;
@@ -512,7 +530,7 @@ footer {
   overflow: hidden;
   padding: 0;
   width: 900px;
-  height: 575px;
+  height: 675px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -607,6 +625,12 @@ footer {
   height: 18px;
 }
 
+#teacher-full-card-info {
+  box-sizing: border-box;
+  height: 625px;
+  overflow: auto;
+}
+
 #teacher-full-card-info #upper-info {
   display: flex;
   flex-direction: row;
@@ -680,7 +704,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: start;
+  align-items: center;
   padding: 0 15px 15px 15px;
 }
 
@@ -689,10 +713,7 @@ footer {
   font-weight: 500;
 }
 
-#info-card-teacher #article-map-info #map {
-  color: var(--page-number-color);
-  text-decoration-style: dotted;
-}
+#map { height: 350px; width: 750px; }
 
 #teacher-adder {
   position: fixed;
@@ -1181,6 +1202,7 @@ footer {
     margin-bottom: 4px;
   }
 
+  #text-teacher-data #day-to-b-date,
   #text-teacher-data #location {
     font-size: 16px;
     font-weight: 500;
@@ -1278,5 +1300,26 @@ footer {
     margin-bottom: 25px;
     font-size: 20px;
     height: 30px;
+  }
+
+  .pie-chart-container {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+
+    margin: 20px auto;
+    background-color: rgba(159, 159, 159, 0.11);
+  }
+
+  .pie-chart-container div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150px;
   }
 }

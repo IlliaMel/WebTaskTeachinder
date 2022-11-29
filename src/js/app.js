@@ -68,12 +68,13 @@ function AllFiltersTogether(data){
     const onlyPhoto = document.getElementById("only-photo");
     const onlyFavorites = document.getElementById("only-favorites");
 
-    TeacherList.filterData = data.filter((user) =>
-        (age.value === 'all' ? true : ageValues(age.value,user.age))
-        && (region.value === 'all' ? true : user.country === region.value)
-        && (gender.value === 'all' ? true : user.gender === gender.value)
-        && (onlyPhoto.checked ? user.picture_large : true)
-        && (onlyFavorites.checked ?  user.favorite : true));
+    TeacherList.filterData = _.filter(data, function(user) {
+        return ((age.value === 'all' ? true : ageValues(age.value,user.age))
+            && (region.value === 'all' ? true : user.country === region.value)
+            && (gender.value === 'all' ? true : user.gender === gender.value)
+            && (onlyPhoto.checked ? user.picture_large : true)
+            && (onlyFavorites.checked ?  user.favorite : true));
+    });
 
     TeacherList.paginationIndex = 0;
     paginationListLogic(TeacherList.filterData);
@@ -155,7 +156,6 @@ function paginationButtonsLogic(){
     });
 
 }
-
 function onPaginationClick(data){
     const div = document.getElementById("pagNumbers");
     let html = '';
@@ -177,79 +177,33 @@ function tableButtonsLogic(){
 
     sortByName.addEventListener("click", () => {
         TeacherList.sortByName *= -1;
-        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareByNames));
+        TeacherList.paginationData = _.orderBy(TeacherList.paginationData, ['full_name'],TeacherList.sortByName === -1 ? ['asc'] : ['desc'] );
+        TeacherList.addForTableInfo(TeacherList.paginationData);
     });
 
     sortByCourse.addEventListener("click", () => {
         TeacherList.sortByCourse *= -1;
-
-        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareBySpecialities));
+        TeacherList.paginationData = _.orderBy(TeacherList.paginationData, ['course'],TeacherList.sortByCourse === -1 ? ['asc'] : ['desc'] );
+        TeacherList.addForTableInfo(TeacherList.paginationData);
     });
 
     sortByAge.addEventListener("click", () => {
         TeacherList.sortByAge *= -1;
-        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareByAges));
+        TeacherList.paginationData = _.orderBy(TeacherList.paginationData, ['age'],TeacherList.sortByAge === -1 ? ['asc'] : ['desc'] );
+        TeacherList.addForTableInfo(TeacherList.paginationData);
     });
 
     compareByGender.addEventListener("click", () => {
         TeacherList.sortByGender *= -1;
-        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareByGenders));
+        TeacherList.paginationData = _.orderBy(TeacherList.paginationData, ['gender'],TeacherList.sortByGender === -1 ? ['asc'] : ['desc'] );
+        TeacherList.addForTableInfo(TeacherList.paginationData);
     });
 
     sortByCountry.addEventListener("click", () => {
         TeacherList.sortByCountry *= -1;
-        TeacherList.addForTableInfo(TeacherList.paginationData.sort(compareByCountries));
+        TeacherList.paginationData = _.orderBy(TeacherList.paginationData, ['country'],TeacherList.sortByCountry === -1 ? ['asc'] : ['desc'] );
+        TeacherList.addForTableInfo(TeacherList.paginationData);
     });
-
-    function compareByNames(a, b) {
-        if (a.full_name < b.full_name) {
-            return TeacherList.sortByName * -1;
-        }
-        if (a.full_name > b.full_name) {
-            return TeacherList.sortByName;
-        }
-        return 0;
-    }
-
-    function compareBySpecialities(a, b) {
-        if (a.course < b.course) {
-            return TeacherList.sortByCourse * -1;
-        }
-        if (a.course > b.course) {
-            return TeacherList.sortByCourse;
-        }
-        return 0;
-    }
-
-    function compareByAges(a, b) {
-        if (a.age < b.age) {
-            return TeacherList.sortByAge * -1;
-        }
-        if (a.age > b.age) {
-            return TeacherList.sortByAge;
-        }
-        return 0;
-    }
-
-    function compareByGenders(a, b) {
-        if (a.gender < b.gender) {
-            return TeacherList.sortByGender * -1;
-        }
-        if (a.gender > b.gender) {
-            return TeacherList.sortByGender;
-        }
-        return 0;
-    }
-
-    function compareByCountries(a, b) {
-        if (a.country < b.country) {
-            return TeacherList.sortByCountry * -1;
-        }
-        if (a.country > b.country) {
-            return TeacherList.sortByCountry;
-        }
-        return 0;
-    }
 
 }
 
@@ -312,6 +266,8 @@ function addTeacherResLogic(data){
             picture_large: null,
             picture_thumbnail: null,
         }
+
+
 
 
         if(isValidUser(teacher) && isStringFieldValid(bDate) && teacher.age >= 18){
@@ -410,7 +366,9 @@ function addStorage() {
                 return results.json();
             })
             .then((data) => {
-                let arr = data['results'].map(user => Utils.reformUser(user));
+                let arr = _.map(data['results'] , function makeMap(user) {
+                    return user => Utils.reformUser(user);
+                });
                     localStorage.setItem("data" , JSON.stringify(arr))
                 TeacherList.allData = JSON.parse(localStorage.getItem("data"));
                 allLogic(TeacherList.allData);

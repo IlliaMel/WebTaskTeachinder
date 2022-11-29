@@ -7,6 +7,9 @@
    <meta content="width=device-width, initial-scale=1" name="viewport">
    <title>Teachinder</title>
    <link href="./css/app.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+         integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+         crossorigin=""/>
 </head>
 <body>
 <div id="content">
@@ -98,10 +101,16 @@
             </div>
          </div>
       </section>
+
       <!-- Statistics -->
       <section id="statistics">
          <div class="divider"></div>
          <h1 class="title">Statistics</h1>
+         <div class="pie-chart-container">
+            <div id="pie-chart-country-div"><canvas id="pie-chart-country"></canvas></div>
+            <div id="pie-chart-speciality-div"><canvas id="pie-chart-speciality"></canvas></div>
+            <div id="pie-chart-gender-div"><canvas id="pie-chart-gender"></canvas></div>
+         </div>
          <div class="table-scroll-container">
             <table>
                <thead>
@@ -281,6 +290,10 @@
                <span>Chemistry</span>
             </div>
 
+            <div id="day-to-b-date">
+               <span></span>
+            </div>
+
             <div id="location">
                <span>Kiev,</span>
                <span>Ukraine</span>
@@ -306,7 +319,7 @@
                   Receive financial support. Receive training. Courses: Adaptable lesson plans, explore sustainability.
                </p>
          </article>
-         <a href="#" id="map">toggle map</a>
+         <div id="map"></div>
          <!-- <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13446.687691744002!2d166.6428130617894!3d-77.84010056834471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaf773973ada5b34d%3A0xe241f2716549c551!2z0JzQsNC6LdCc0LXRgNC00L4sINCQ0L3RgtCw0YDQutGC0LjQutCw!5e0!3m2!1suk!2sua!4v1665591977061!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
       </section>
    </main>
@@ -329,6 +342,11 @@
 </main>
 </dialog>
 <!--  !-->
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 <script type="module" src="js/app.js" >
 
 
